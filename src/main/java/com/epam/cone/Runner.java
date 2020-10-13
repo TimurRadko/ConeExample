@@ -1,6 +1,13 @@
 package com.epam.cone;
 
+import com.epam.cone.data.ConeCreator;
 import com.epam.cone.data.ConeDirector;
+import com.epam.cone.data.LineParser;
+import com.epam.cone.data.factory.ConeDirectorFactory;
+import com.epam.cone.data.factory.ConeDirectorFactoryImpl;
+import com.epam.cone.data.reader.DataReader;
+import com.epam.cone.data.reader.FileDataReader;
+import com.epam.cone.data.validator.LineValidator;
 import com.epam.cone.exception.DataException;
 import com.epam.cone.logic.ConeCalculator;
 import com.epam.cone.model.Cone;
@@ -26,7 +33,8 @@ public class Runner {
     }
 
     private static void runProgram() throws DataException {
-        ConeDirector director = new ConeDirector();
+        ConeDirectorFactory factory = new ConeDirectorFactoryImpl();
+        ConeDirector director = factory.create();
         List<Cone> coneList = director.createConeList(FILE_PATH);
 
         ResultsPrinter printer = new FileResultPrinter(OUTPUT_FILE_PATH);

@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataFileReader implements DataReader {
+public class FileDataReader implements DataReader {
     private static final Logger LOGGER = LogManager.getLogger();
 
     @Override

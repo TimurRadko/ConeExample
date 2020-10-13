@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import java.util.List;
 
-public class ConeParserTest {
+public class LineParserTest {
     private static final String LINE = "1.0 1.0 1.0 1.0 1.0";
     private static final int EXPECTED_SIZE = 5;
     private static final double EXPECTED_VALUE = 1.0;
@@ -13,7 +13,7 @@ public class ConeParserTest {
 
     @Test
     public void testParsePointShouldCorrectParseWhenStringNotNull() {
-        ConeParser parser = new ConeParser();
+        LineParser parser = new LineParser();
         List<Double> parameters = parser.parsePoints(LINE);
         Assert.assertEquals(EXPECTED_SIZE, parameters.size());
         double actualValue = parameters.get(0);
