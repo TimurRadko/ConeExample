@@ -26,25 +26,21 @@ public class ConeDirector {
     }
 
     public List<Cone> createConeList(String filename) throws DataException {
-        List<String> lines = reader.readLines(filename);
         List<Cone> coneList = new ArrayList<>();
+        List<String> lines = reader.readLines(filename);
         for (String line : lines) {
-            addConeToList(coneList, line);
+            if (validator.isValid(line)) {
+                List<Double> coneParameters = parser.parsePoints(line);
+                Optional<Cone> optionalCone = creator.create(coneParameters);
+                if (optionalCone.isPresent()) {
+                    Cone cone = optionalCone.get();
+                    coneList.add(cone);
+                    LOGGER.info("The cone has added to List");
+                }
+            } else {
+                LOGGER.warn(String.format("Received Data (%s) is not Valid", line));
+            }
         }
         return coneList;
-    }
-
-    private void addConeToList(List<Cone> coneList, String line) {
-        if (validator.isValid(line)) {
-            List<Double> coneParameters = parser.parsePoints(line);
-            Optional<Cone> optionalCone = creator.create(coneParameters);
-            if (optionalCone.isPresent()) {
-                Cone cone = optionalCone.get();
-                coneList.add(cone);
-                LOGGER.info("The cone has added to List");
-            }
-        } else {
-            LOGGER.warn(String.format("Received Data (%s) is not Valid", line));
-        }
     }
 }
