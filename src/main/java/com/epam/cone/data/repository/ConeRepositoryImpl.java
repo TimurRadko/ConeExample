@@ -3,6 +3,7 @@ package com.epam.cone.data.repository;
 import com.epam.cone.logic.specification.Specification;
 import com.epam.cone.model.Cone;
 import com.epam.cone.model.ConeObservable;
+import com.epam.cone.model.Observer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -12,6 +13,11 @@ import java.util.List;
 public class ConeRepositoryImpl implements ConeRepository {
     private static final Logger LOGGER = LogManager.getLogger(ConeRepositoryImpl.class);
     private final List<ConeObservable> coneList = new ArrayList<>();
+    private final Observer observer;
+
+    public ConeRepositoryImpl(Observer observer) {
+        this.observer = observer;
+    }
 
     @Override
     public int getRepositorySize() {
@@ -30,7 +36,8 @@ public class ConeRepositoryImpl implements ConeRepository {
 
     @Override
     public void updateCone(ConeObservable cone) {
-
+        //probably implementation of this method not correct
+        observer.update(cone);
     }
 
     @Override

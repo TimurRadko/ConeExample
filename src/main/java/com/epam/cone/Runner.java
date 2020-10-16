@@ -36,20 +36,20 @@ public class Runner {
         ConeDirector director = factory.create();
         List<Cone> coneList = director.createConeList(FILE_PATH);
 
-        ConeRepository repository = new ConeRepositoryImpl();
+        Observer observer = ConeObserver.getInstance();
+        ConeRepository repository = new ConeRepositoryImpl(observer);
         repository.addCones(coneList);
 
         ResultsPrinter printer = new FileResultPrinter(OUTPUT_FILE_PATH);
         printer.print(repository);
 
-        Observer observer = ConeObserver.getInstance();
         Specification specification = new IdSpecification(1);
 
         List<ConeObservable> observables = repository.query(specification);
         ConeObservable coneObservable = observables.get(0);
         ConeCalculator calculator = new ConeCalculator();
-        double surfaceArea = calculator.getSurfaceArea(coneObservable);
-        double volume = calculator.getVolume(coneObservable);
+        calculator.getSurfaceArea(coneObservable);
+        calculator.getVolume(coneObservable);
 
         coneObservable.addObserver(observer);
 
