@@ -1,6 +1,5 @@
 package com.epam.cone.model;
 
-import com.epam.cone.data.repository.ConeRepository;
 import com.epam.cone.logic.ConeCalculator;
 
 import java.util.HashMap;

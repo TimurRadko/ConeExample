@@ -4,7 +4,6 @@ import com.epam.cone.data.repository.ConeRepository;
 import com.epam.cone.exception.DataException;
 import com.epam.cone.logic.specification.IdSpecification;
 import com.epam.cone.logic.specification.Specification;
-import com.epam.cone.model.Cone;
 import com.epam.cone.model.ConeObservable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -45,10 +44,10 @@ public class FileResultPrinter implements ResultsPrinter {
     }
 
     private void writeConeToFile(List<ConeObservable> coneList, BufferedWriter writer) throws IOException {
-        for (Cone cone : coneList) {
+        for (ConeObservable cone : coneList) {
             String coneToString = prepareStringToPrint(cone.toString());
-            LOGGER.info(String.format("%s",coneToString));
-            writer.write(String.format("%s",coneToString));
+            LOGGER.info(String.format("%s", coneToString));
+            writer.write(String.format("%s", coneToString));
         }
     }
 

@@ -16,6 +16,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.List;
+import java.util.Map;
 
 public class Runner {
     private static final String FILE_PATH = "data/input.txt";
@@ -37,7 +38,7 @@ public class Runner {
         List<Cone> coneList = director.createConeList(FILE_PATH);
 
         Observer observer = ConeObserver.getInstance();
-        ConeRepository repository = new ConeRepositoryImpl(observer);
+        ConeRepository repository = new ConeRepositoryImpl();
         repository.addCones(coneList);
 
         ResultsPrinter printer = new FileResultPrinter(OUTPUT_FILE_PATH);
@@ -47,15 +48,13 @@ public class Runner {
 
         List<ConeObservable> observables = repository.query(specification);
         ConeObservable coneObservable = observables.get(0);
+        coneObservable.addObserver(observer);
+
         ConeCalculator calculator = new ConeCalculator();
         calculator.getSurfaceArea(coneObservable);
         calculator.getVolume(coneObservable);
 
-        coneObservable.addObserver(observer);
-
         coneObservable.setRadius(5);
-        coneObservable.notifyObservers();
-
         printer.print(repository);
     }
 }

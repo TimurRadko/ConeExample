@@ -11,7 +11,7 @@ public class IdSpecificationTest {
     private static final double RADIUS = 1;
     private static final double HEIGHT = 1;
     private static final Cone EXPECTED_CONE = new Cone(DEFAULT_POINT, RADIUS, HEIGHT);
-    private static final ConeObservable CONE = new ConeObservable(EXPECTED_CONE, 1);
+    private static final ConeObservable CONE = new ConeObservable(EXPECTED_CONE);
 
     @Test
     public void testSpecifiedShouldReturnCorrectListWhenLIstConsistEntity() {
