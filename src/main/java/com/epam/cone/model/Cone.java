@@ -1,9 +1,9 @@
 package com.epam.cone.model;
 
 public class Cone {
-    private final Point point;
-    private final double radius;
-    private final double height;
+    private Point point;
+    private double radius;
+    private double height;
 
     public Cone(Point point, double radius, double height) {
         this.point = point;
@@ -15,12 +15,24 @@ public class Cone {
         return point;
     }
 
+    public void setPoint(Point point) {
+        this.point = point;
+    }
+
     public double getRadius() {
         return radius;
     }
 
+    public void setRadius(double radius) {
+        this.radius = radius;
+    }
+
     public double getHeight() {
         return height;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
     }
 
     @Override

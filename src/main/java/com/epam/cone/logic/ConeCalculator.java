@@ -1,13 +1,12 @@
 package com.epam.cone.logic;
 
-import com.epam.cone.data.ConeCreator;
 import com.epam.cone.model.Cone;
 import com.epam.cone.model.Point;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class ConeCalculator {
-    private static final Logger LOGGER = LogManager.getLogger(ConeCreator.class);
+    private static final Logger LOGGER = LogManager.getLogger(ConeCalculator.class);
 
     public double getSurfaceArea(Cone cone) {
         double radius = cone.getRadius();

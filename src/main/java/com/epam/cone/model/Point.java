@@ -1,9 +1,9 @@
 package com.epam.cone.model;
 
 public class Point {
-    private final double coordinateX;
-    private final double coordinateY;
-    private final double coordinateZ;
+    private double coordinateX;
+    private double coordinateY;
+    private double coordinateZ;
 
     public Point(double coordinateX, double coordinateY, double coordinateZ) {
         this.coordinateX = coordinateX;
@@ -15,12 +15,24 @@ public class Point {
         return coordinateX;
     }
 
+    public void setCoordinateX(double coordinateX) {
+        this.coordinateX = coordinateX;
+    }
+
     public double getCoordinateY() {
         return coordinateY;
     }
 
+    public void setCoordinateY(double coordinateY) {
+        this.coordinateY = coordinateY;
+    }
+
     public double getCoordinateZ() {
         return coordinateZ;
+    }
+
+    public void setCoordinateZ(double coordinateZ) {
+        this.coordinateZ = coordinateZ;
     }
 
     @Override

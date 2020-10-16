@@ -1,16 +1,15 @@
 package com.epam.cone;
 
-import com.epam.cone.data.ConeCreator;
 import com.epam.cone.data.ConeDirector;
-import com.epam.cone.data.LineParser;
 import com.epam.cone.data.factory.ConeDirectorFactory;
 import com.epam.cone.data.factory.ConeDirectorFactoryImpl;
-import com.epam.cone.data.reader.DataReader;
-import com.epam.cone.data.reader.FileDataReader;
-import com.epam.cone.data.validator.LineValidator;
+import com.epam.cone.data.repository.ConeRepository;
+import com.epam.cone.data.repository.ConeRepositoryImpl;
 import com.epam.cone.exception.DataException;
 import com.epam.cone.logic.ConeCalculator;
-import com.epam.cone.model.Cone;
+import com.epam.cone.logic.specification.IdSpecification;
+import com.epam.cone.logic.specification.Specification;
+import com.epam.cone.model.*;
 import com.epam.cone.view.FileResultPrinter;
 import com.epam.cone.view.ResultsPrinter;
 import org.apache.logging.log4j.LogManager;
@@ -37,13 +36,26 @@ public class Runner {
         ConeDirector director = factory.create();
         List<Cone> coneList = director.createConeList(FILE_PATH);
 
+        ConeRepository repository = new ConeRepositoryImpl();
+        repository.addCones(coneList);
+
         ResultsPrinter printer = new FileResultPrinter(OUTPUT_FILE_PATH);
-        printer.print(coneList);
+        printer.print(repository);
 
+        Observer observer = ConeObserver.getInstance();
+        Specification specification = new IdSpecification(1);
+
+        List<ConeObservable> observables = repository.query(specification);
+        ConeObservable coneObservable = observables.get(0);
         ConeCalculator calculator = new ConeCalculator();
+        double surfaceArea = calculator.getSurfaceArea(coneObservable);
+        double volume = calculator.getVolume(coneObservable);
 
-        double surfaceArea = calculator.getSurfaceArea(coneList.get(0));
-        double volume = calculator.getVolume(coneList.get(0));
-        double volumeRationAfterTruncated = calculator.volumeRatioAfterTruncated(coneList.get(0), 5);
+        coneObservable.addObserver(observer);
+
+        coneObservable.setRadius(5);
+        coneObservable.notifyObservers();
+
+        printer.print(repository);
     }
 }
