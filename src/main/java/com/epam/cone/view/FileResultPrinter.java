@@ -2,8 +2,8 @@ package com.epam.cone.view;
 
 import com.epam.cone.data.repository.ConeRepository;
 import com.epam.cone.exception.DataException;
-import com.epam.cone.logic.specification.IdSpecification;
-import com.epam.cone.logic.specification.Specification;
+import com.epam.cone.data.specification.IdSpecification;
+import com.epam.cone.data.specification.Specification;
 import com.epam.cone.model.ConeObservable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

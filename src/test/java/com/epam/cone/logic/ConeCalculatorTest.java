@@ -17,6 +17,8 @@ public class ConeCalculatorTest {
     private static final Cone ON_THE_AXIS_CONE = new Cone(ZERO_POINT, DEFAULT_RADIUS,DEFAULT_HEIGHT);
     private static final Cone ZERO_CONE = new Cone(ZERO_POINT,0,0);
     private ConeCalculator calculator;
+    private static final double CORRECT_ANSWER_GET_SURFACE_AREA = 7.58;
+    private static final double CORRECT_ANSWER_GET_VOLUME = 1.04;
 
     @Before
     public void createConeCalculator() {
@@ -30,14 +32,31 @@ public class ConeCalculatorTest {
     }
 
     @Test
+    public void testGetSurfaceAreaShouldReturnCorrectResult() {
+        double actualResult = calculator.getSurfaceArea(DEFAULT_CONE);
+        Assert.assertEquals(CORRECT_ANSWER_GET_SURFACE_AREA, actualResult, DELTA);
+    }
+
+    @Test
     public void testGetVolumeShouldReturnZeroWhenParametersConeIsZero() {
         double actualResult = calculator.getVolume(ZERO_CONE);
         Assert.assertEquals(EXPECTED_ZERO, actualResult, DELTA);
     }
 
     @Test
+    public void testGetVolumeShouldReturnCorrectAnswer() {
+        double actualResult = calculator.getVolume(DEFAULT_CONE);
+        Assert.assertEquals(CORRECT_ANSWER_GET_VOLUME, actualResult, DELTA);
+    }
+
+    @Test
     public void testCheckConeBaseLieOnAxisXZShouldReturnTrueWhenConeLieOnAxis() {
         Assert.assertTrue(calculator.checkConeBaseLieOnAxisXZ(ON_THE_AXIS_CONE));
+    }
+
+    @Test
+    public void testCheckConeBaseLieOnAxisXZShouldReturnFalseWhenConeNotLieOnAxis() {
+        Assert.assertFalse(calculator.checkConeBaseLieOnAxisXZ(DEFAULT_CONE));
     }
 
     @Test

@@ -49,7 +49,7 @@ public class ConeDirectorTest {
         when(creator.create(VALID_PARAMETERS)).thenReturn(Optional.of(new Cone(DEFAULT_POINT, RADIUS, HEIGHT)));
 
         ConeDirector director = new ConeDirector(reader, parser, validator, creator);
-        List<Cone> actualConeList = director.createConeList(FILE_PATH);
+        List<Cone> actualConeList = director.createConeList();
 
         Assert.assertEquals(EXPECTED_LIST, actualConeList);
     }
@@ -61,7 +61,7 @@ public class ConeDirectorTest {
         when(validator.isValid(anyString())).thenReturn(false);
 
         ConeDirector director = new ConeDirector(reader, parser, validator, creator);
-        List<Cone> actualConeList = director.createConeList(FILE_PATH);
+        List<Cone> actualConeList = director.createConeList();
 
         Assert.assertEquals(EMPTY_LIST, actualConeList);
     }

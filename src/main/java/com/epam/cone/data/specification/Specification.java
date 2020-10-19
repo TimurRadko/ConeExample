@@ -1,4 +1,4 @@
-package com.epam.cone.logic.specification;
+package com.epam.cone.data.specification;
 
 import com.epam.cone.model.ConeObservable;
 

@@ -13,6 +13,7 @@ import java.util.Optional;
 
 public class ConeDirector {
     private static final Logger LOGGER = LogManager.getLogger(ConeDirector.class);
+    private static final String FILE_PATH = "data/input.txt";
     private final DataReader reader;
     private final LineParser parser;
     private final Validator<String> validator;
@@ -25,9 +26,9 @@ public class ConeDirector {
         this.creator = creator;
     }
 
-    public List<Cone> createConeList(String filename) throws DataException {
+    public List<Cone> createConeList() throws DataException {
         List<Cone> coneList = new ArrayList<>();
-        List<String> lines = reader.readLines(filename);
+        List<String> lines = reader.readLines(FILE_PATH);
         for (String line : lines) {
             if (validator.isValid(line)) {
                 List<Double> coneParameters = parser.parsePoints(line);

@@ -1,4 +1,4 @@
-package com.epam.cone.logic.specification;
+package com.epam.cone.data.specification;
 
 import com.epam.cone.model.Cone;
 import com.epam.cone.model.ConeObservable;
@@ -6,7 +6,7 @@ import com.epam.cone.model.Point;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class IdSpecificationTest {
+public class DistanceFromOriginSpecificationTest {
     private static final Point DEFAULT_POINT = new Point(1,1,1);
     private static final double RADIUS = 1;
     private static final double HEIGHT = 1;
@@ -14,8 +14,8 @@ public class IdSpecificationTest {
     private static final ConeObservable CONE = new ConeObservable(EXPECTED_CONE);
 
     @Test
-    public void testSpecifiedShouldReturnCorrectListWhenLIstConsistEntity() {
-        Specification specification = new IdSpecification(1);
+    public void testSpecifiedShouldReturnCorrectAnswerWhenListConsistEntity() {
+        Specification specification = new DistanceFromOriginSpecification(1);
         Assert.assertTrue(specification.specified(CONE));
     }
 }

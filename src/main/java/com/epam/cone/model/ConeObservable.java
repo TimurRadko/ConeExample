@@ -2,16 +2,20 @@ package com.epam.cone.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class ConeObservable extends Cone implements Observable {
     private final List<Observer> observers = new ArrayList<>();
-    private static final AtomicInteger COUNTER = new AtomicInteger(1);
+    private static final IdGenerator ID_GENERATOR = new IdGenerator(1);
     private final int id;
 
     public ConeObservable(Cone cone) {
         super(cone.getPoint(), cone.getRadius(), cone.getHeight());
-        id = COUNTER.getAndIncrement();
+        id = ID_GENERATOR.getId();
+    }
+
+    public ConeObservable(Cone cone, int id) {
+        super(cone.getPoint(), cone.getRadius(), cone.getHeight());
+        this.id = id;
     }
 
     public int getId() {

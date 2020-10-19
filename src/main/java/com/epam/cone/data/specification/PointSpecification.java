@@ -1,4 +1,4 @@
-package com.epam.cone.logic.specification;
+package com.epam.cone.data.specification;
 
 import com.epam.cone.model.ConeObservable;
 import com.epam.cone.model.Point;
@@ -15,4 +15,6 @@ public class PointSpecification implements Specification {
         Point actualPoint = cone.getPoint();
         return point.equals(actualPoint);
     }
+
+
 }
